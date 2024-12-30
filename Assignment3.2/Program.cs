@@ -8,7 +8,7 @@ namespace Assignment3._2
         static void Main(string[] args)
         {
             //part1
-                //will see it in The Demo in another Solution 
+            //will see it in The Demo in another Solution 
             //Part2
             #region 1 Define a struct "Person" 
             //Person[] persons = new Person[3];
@@ -79,15 +79,27 @@ namespace Assignment3._2
             #endregion
             #region Create an array of Employees 
 
-            //Employee[] employees = new Employee[3];
+            List<Employee> employees = new List<Employee>
+        {
+            new Employee (2, "DBA", Permissions.dba, 60000, Gender.m, 1, 2, 2001),
+            new Employee(3, "Guest", Permissions.guest, 60000, Gender.m, 3, 3, 2003),
+            new Employee(4, "security officer", (Permissions)15, 60000, Gender.m, 2, 2, 2002),
+        };
 
-            //employees[0] = new Employee(2, "DBA", Permissions.dba, 60000, Gender.m, 1, 2, 2002);
-            //employees[1] = new Employee(3, "Guest", Permissions.guest, 60000, Gender.m, 1, 2, 2002);
-            //employees[2] = new Employee(4, "security officer", (Permissions)15, 60000, Gender.m, 1, 2, 2002);
+            //Array.ForEach(employees, p => Console.WriteLine($"Id : {p.Id} | Name : {p.Name} | Security_Level : {p.Security_Level}  | Salary :{p.Salary:c} | Gender : {(p.Gender.ToString() == Gender.m.ToString() ? " Male " : " Female ")} | Date :{p.Day}/{p.Month}/{p.Year}"));
+            for (int i = 0; i < 3; i++)
+                Console.WriteLine(employees[i].ToString());
+            #endregion
+            #region Sort the employees
 
-            ////Array.ForEach(employees, p => Console.WriteLine($"Id : {p.Id} | Name : {p.Name} | Security_Level : {p.Security_Level}  | Salary :{p.Salary:c} | Gender : {(p.Gender.ToString() == Gender.m.ToString() ? " Male " : " Female ")} | Date :{p.Day}/{p.Month}/{p.Year}"));
-            //for (int i = 0; i < employees.Length; i++)
-            //    Console.WriteLine(employees[i].ToString());
+            var sortedEmployees = employees.OrderBy(e => new DateOnly(e.Year, e.Month, e.Day)).ToList();
+
+
+            foreach (var employee in sortedEmployees)
+            {
+                Console.WriteLine($"ID: {employee.Id}, Name: {employee.Name}, Date: {employee.Day}/{employee.Month}/{employee.Year}, Security Level: {employee.Security_Level}, Salary: {employee.Salary}, Gender: {employee.Gender}");
+            }
+
             #endregion
 
             #endregion
